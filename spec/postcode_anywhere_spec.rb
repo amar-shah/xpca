@@ -30,7 +30,9 @@ describe PostcodeAnywhere do
     end
 
     it "should configure itself from the options hash" do
-      PostcodeAnywhere.new(:account_code => @acc_code).account_code.should eq @acc_code
+      pca = PostcodeAnywhere.new(:account_code => @acc_code)
+      pca.account_code.should_not be nil
+      pca.account_code.should eq @acc_code
     end
 
   end
@@ -46,8 +48,9 @@ describe PostcodeAnywhere do
     end
 
     it "should configure itself from the options hash" do
-      @lic_code = "AA00-BB11-CC22-DD33"
-      PostcodeAnywhere.new(:license_code => @lic_code).license_code.should eq @lic_code
+      pca = PostcodeAnywhere.new(:license_code => @lic_code)
+      pca.license_code.should_not be nil
+      pca.license_code.should eq @lic_code
     end
 
   end
