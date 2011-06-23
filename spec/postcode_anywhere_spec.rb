@@ -104,23 +104,36 @@ describe PostcodeAnywhere do
   describe "the PostcodeAnywhere fetch_uri method" do
 
     it "should be implemented" do
-      PostcodeAnywhere.new.should respond_to(:fetch_uri).with(0).arguments
+      PostcodeAnywhere.new.should respond_to(:fetch_uri).with(1).arguments
+    end
+
+    it "should have a mandatory String argument" do
+      lambda { PostcodeAnywhere.new().fetch_uri() }.should raise_error ArgumentError
+      lambda { PostcodeAnywhere.new().fetch_uri("") }.should_not raise_error ArgumentError
     end
 
     it "should include the account code" do
-      PostcodeAnywhere.new(:account_code => @acc_code).fetch_uri.should match /account_code=#{@acc_code}/
+      PostcodeAnywhere.new(:account_code => @acc_code).fetch_uri("").should match /account_code=#{@acc_code}/
     end
 
     it "should include the license code" do
-      PostcodeAnywhere.new(:license_code => @lic_code).fetch_uri.should match /license_code=#{@lic_code}/
+      PostcodeAnywhere.new(:license_code => @lic_code).fetch_uri("").should match /license_code=#{@lic_code}/
     end
 
     it "should include the fetch action" do
-      PostcodeAnywhere.new.fetch_uri.should match /action=fetch/
+      PostcodeAnywhere.new.fetch_uri("").should match /action=fetch/
+    end
+    
+    it "should include the id" do
+      PostcodeAnywhere.new.fetch_uri("123").should match /id=123/
+    end
+
+    it "should include the postcode with whitespace stripped" do
+      PostcodeAnywhere.new.fetch_uri(" 123 ").should match /id=123/
     end
 
     it "should start with BASE_URL" do
-      PostcodeAnywhere.new.fetch_uri.should match /\A#{PostcodeAnywhere::BASE_URL}/
+      PostcodeAnywhere.new.fetch_uri("").should match /\A#{PostcodeAnywhere::BASE_URL}/
     end
 
   end
