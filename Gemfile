@@ -1,6 +1,8 @@
 # A sample Gemfile
 source "http://rubygems.org"
 
+gem 'highline'
+
 gem 'httparty'
 
 gem "rspec"
