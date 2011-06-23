@@ -1,6 +1,11 @@
 require "highline"
 
-task :default => [:config]
+task :default => [:spec]
+
+require 'rspec/core/rake_task'
+RSpec::Core::RakeTask.new(:spec) do |test|
+  test.verbose = true
+end
 
 desc "run this task to generate a working xpca.yml config file"
 task :config do
