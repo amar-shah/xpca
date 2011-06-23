@@ -18,6 +18,14 @@ describe PostcodeAnywhere do
       PostcodeAnywhere.included_modules.should include HTTParty
     end
 
+    it "should specify a base_uri" do
+      PostcodeAnywhere.base_uri.should_not be nil
+    end
+
+    it "should use BASE_URL as the base_uri" do
+      PostcodeAnywhere.base_uri.should eq PostcodeAnywhere.const_get('BASE_URL')
+    end
+
   end
 
   describe "the PostcodeAnywhere initializer" do
@@ -99,8 +107,8 @@ describe PostcodeAnywhere do
       PostcodeAnywhere.new.lookup_uri(" EC1 2AE ").should match /postcode=EC12AE/
     end
 
-    it "should start with BASE_URL" do
-      PostcodeAnywhere.new.lookup_uri("").should match /\A#{PostcodeAnywhere::BASE_URL}/
+    it "should start with base_uri" do
+      PostcodeAnywhere.new.lookup_uri("").should match /\A#{PostcodeAnywhere.base_uri}/
     end
 
   end
@@ -136,8 +144,8 @@ describe PostcodeAnywhere do
       PostcodeAnywhere.new.fetch_uri(" 123 ").should match /id=123/
     end
 
-    it "should start with BASE_URL" do
-      PostcodeAnywhere.new.fetch_uri("").should match /\A#{PostcodeAnywhere::BASE_URL}/
+    it "should start with base_uri" do
+      PostcodeAnywhere.new.fetch_uri("").should match /\A#{PostcodeAnywhere.base_uri}/
     end
 
   end
