@@ -9,7 +9,10 @@ GEM
     autotest-growl (0.2.9)
     autotest-notification (2.3.1)
       autotest (~> 4.3)
+    crack (0.1.8)
     diff-lcs (1.1.2)
+    httparty (0.7.8)
+      crack (= 0.1.8)
     rspec (2.6.0)
       rspec-core (~> 2.6.0)
       rspec-expectations (~> 2.6.0)
@@ -30,4 +33,5 @@ DEPENDENCIES
   autotest-fsevent
   autotest-growl
   autotest-notification
+  httparty
   rspec

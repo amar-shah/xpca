@@ -14,6 +14,10 @@ describe PostcodeAnywhere do
       PostcodeAnywhere.const_get('BASE_URL').should_not be_empty
     end
 
+    it "should include HTTParty" do
+      PostcodeAnywhere.included_modules.should include HTTParty
+    end
+
   end
 
   describe "the PostcodeAnywhere initializer" do
@@ -69,7 +73,7 @@ describe PostcodeAnywhere do
     it "should be implemented" do
       PostcodeAnywhere.new.should respond_to(:lookup_uri).with(1).arguments
     end
-    
+
     it "should have a mandatory String argument" do
       lambda { PostcodeAnywhere.new().lookup_uri() }.should raise_error ArgumentError
       lambda { PostcodeAnywhere.new().lookup_uri("") }.should_not raise_error ArgumentError
@@ -86,7 +90,7 @@ describe PostcodeAnywhere do
     it "should include the lookup action" do
       PostcodeAnywhere.new.lookup_uri("").should match /action=lookup/
     end
-    
+
     it "should include the postcode" do
       PostcodeAnywhere.new.lookup_uri("EC1").should match /postcode=EC1/
     end
@@ -94,7 +98,7 @@ describe PostcodeAnywhere do
     it "should include the postcode with whitespace stripped" do
       PostcodeAnywhere.new.lookup_uri(" EC1 2AE ").should match /postcode=EC12AE/
     end
-    
+
     it "should start with BASE_URL" do
       PostcodeAnywhere.new.lookup_uri("").should match /\A#{PostcodeAnywhere::BASE_URL}/
     end
@@ -123,7 +127,7 @@ describe PostcodeAnywhere do
     it "should include the fetch action" do
       PostcodeAnywhere.new.fetch_uri("").should match /action=fetch/
     end
-    
+
     it "should include the id" do
       PostcodeAnywhere.new.fetch_uri("123").should match /id=123/
     end
