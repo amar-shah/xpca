@@ -81,6 +81,10 @@ describe PostcodeAnywhere do
     it "should include the lookup action" do
       PostcodeAnywhere.new.lookup_uri.should match /action=lookup/
     end
+    
+    it "should start with BASE_URL" do
+      PostcodeAnywhere.new.lookup_uri.should match /\A#{PostcodeAnywhere::BASE_URL}/
+    end
 
   end
 
@@ -100,6 +104,10 @@ describe PostcodeAnywhere do
 
     it "should include the fetch action" do
       PostcodeAnywhere.new.fetch_uri.should match /action=fetch/
+    end
+
+    it "should start with BASE_URL" do
+      PostcodeAnywhere.new.fetch_uri.should match /\A#{PostcodeAnywhere::BASE_URL}/
     end
 
   end
