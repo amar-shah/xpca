@@ -7,6 +7,15 @@ describe PostcodeAnywhere do
     @lic_code = "AA00-BB11-CC22-DD33"
   end
 
+  describe "the PostcodeAnywhere class" do
+
+    it "should define the BASE_URL constant" do
+      PostcodeAnywhere.const_get('BASE_URL').should_not be nil
+      PostcodeAnywhere.const_get('BASE_URL').should_not be_empty
+    end
+
+  end
+
   describe "the PostcodeAnywhere initializer" do
 
     it "takes an options hash as its argument" do
