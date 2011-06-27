@@ -11,6 +11,7 @@ GEM
       autotest (~> 4.3)
     crack (0.1.8)
     diff-lcs (1.1.2)
+    highline (1.6.2)
     httparty (0.7.8)
       crack (= 0.1.8)
     rspec (2.6.0)
@@ -33,5 +34,6 @@ DEPENDENCIES
   autotest-fsevent
   autotest-growl
   autotest-notification
+  highline
   httparty
   rspec
