@@ -64,7 +64,7 @@ describe PostcodeAnywhere do
       PostcodeAnywhere.new.should respond_to(:license_code).with(0).arguments
     end
 
-    it "shoud return nil by default" do
+    it "should return nil by default" do
       PostcodeAnywhere.new.license_code.should be nil
     end
 
